@@ -1,4 +1,5 @@
 import React from 'react'
+import  './style.scss'
 
 class ChildComponent extends React.Component {
 
@@ -12,6 +13,10 @@ class ChildComponent extends React.Component {
             })
         }
 
+        handleOnClickDelete = (job) => {
+            this.props.deleteAJob(job)
+        }
+
     render() {
         
         // let name = this.props.name;
@@ -23,7 +28,8 @@ class ChildComponent extends React.Component {
             <>  
                 { showJobs === false ?
                     <div>
-                        <button onClick = {()=> this.handleShowHide()}>Show</button>
+                        <button className='btn-show'
+                        onClick = {()=> this.handleShowHide()}>Show</button>
                     </div>
                 
                 : 
@@ -33,7 +39,9 @@ class ChildComponent extends React.Component {
                         job.map((item,index) => {
                             return(
                                 <div key = {item.id}>
-                                    {item.title} - {item.salary}
+                                    {item.title} - {item.salary} $
+                                    <> </><span  onClick = {()=>this.handleOnClickDelete(item)}>
+                                     &#10006;</span>
                                 </div>
                             )
                         })
@@ -78,3 +86,4 @@ class ChildComponent extends React.Component {
 
 
 export default ChildComponent;
+
